@@ -71,3 +71,24 @@ enum UserGender {
   /// @nodoc
   const UserGender(this.value);
 }
+
+///
+/// This enum represents the user's geography used to determine the type of
+/// consent flow shown to the user.
+///
+enum ConsentFlowUserGeography {
+  /// User's geography is unknown.
+  unknown('U'),
+
+  /// The user is in GDPR region.
+  gdpr('G'),
+
+  /// The user is in a non-GDPR region.
+  other('O');
+
+  /// @nodoc
+  final String value;
+
+  /// @nodoc
+  const ConsentFlowUserGeography(this.value);
+}
