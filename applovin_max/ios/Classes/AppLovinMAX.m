@@ -270,16 +270,16 @@ static FlutterMethodChannel *ALSharedChannel;
         message[@"isTestModeEnabled"] = @(self.sdkConfiguration.isTestModeEnabled);
         if (@available(iOS 14.5, *)) {
             switch(@(self.sdkConfiguration.appTrackingTransparencyStatus)) {
-                case '0' :
+                case @"0" :
                     message[@"appTrackingTransparencyStatus"] = @"notDetermined";
                     break;
-                case '1' :
+                case @"1" :
                     message[@"appTrackingTransparencyStatus"] = @"restricted";
                     break;
-                case '2' :
+                case @"2" :
                     message[@"appTrackingTransparencyStatus"] = @"denied";
                     break;
-                case '3' :
+                case @"3" :
                     message[@"appTrackingTransparencyStatus"] = @"granted";
                     break;
                 default:
