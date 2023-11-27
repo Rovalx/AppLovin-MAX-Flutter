@@ -178,7 +178,7 @@ static FlutterMethodChannel *ALSharedChannel;
 
     if ( self.debugUserGeographyToSet )
     {
-        ALSdkSettings.termsAndPrivacyPolicyFlowSettings.debugUserGeography = [self toAppLovinConsentFlowUserGeography: self.debugUserGeographyToSet];
+        settings.termsAndPrivacyPolicyFlowSettings.debugUserGeography = [self toAppLovinConsentFlowUserGeography: self.debugUserGeographyToSet];
         self.debugUserGeographyToSet = nil;
     }
     
