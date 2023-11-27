@@ -299,6 +299,8 @@ static FlutterMethodChannel *ALSharedChannel;
                 default:
                     break;
             }       
+        } else {
+            message[@"appTrackingTransparencyStatus"] = @"granted";
         }
     }
     else
