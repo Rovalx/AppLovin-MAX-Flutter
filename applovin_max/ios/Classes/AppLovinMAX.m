@@ -158,15 +158,29 @@ static FlutterMethodChannel *ALSharedChannel;
     }
     
     ALSdkSettings *settings = [[ALSdkSettings alloc] init];
-    settings.termsAndPrivacyPolicyFlowSettings.enabled = self.consentFlowEnabledToSet.boolValue;
-    settings.termsAndPrivacyPolicyFlowSettings.privacyPolicyURL = self.privacyPolicyURLToSet;
-    settings.termsAndPrivacyPolicyFlowSettings.termsOfServiceURL = self.termsOfServiceURLToSet;
-    ALSdkSettings.termsAndPrivacyPolicyFlowSettings.debugUserGeography = [self toAppLovinConsentFlowUserGeography: self.debugUserGeographyToSet];
 
-    self.consentFlowEnabledToSet = nil;
-    self.privacyPolicyURLToSet = nil;
-    self.termsOfServiceURLToSet = nil;
-    self.debugUserGeographyToSet = nil;
+    if ( self.consentFlowEnabledToSet )
+    {
+        settings.termsAndPrivacyPolicyFlowSettings.enabled = self.consentFlowEnabledToSet.boolValue;
+        self.consentFlowEnabledToSet = nil;
+    }
+    if ( self.privacyPolicyURLToSet )
+    {
+        settings.termsAndPrivacyPolicyFlowSettings.privacyPolicyURL = self.privacyPolicyURLToSet;
+        self.privacyPolicyURLToSet = nil;
+    }
+
+    if ( self.termsOfServiceURLToSet )
+    {
+        settings.termsAndPrivacyPolicyFlowSettings.termsOfServiceURL = self.termsOfServiceURLToSet;
+        self.termsOfServiceURLToSet = nil;
+    }
+
+    if ( self.debugUserGeographyToSet )
+    {
+        ALSdkSettings.termsAndPrivacyPolicyFlowSettings.debugUserGeography = [self toAppLovinConsentFlowUserGeography: self.debugUserGeographyToSet];
+        self.debugUserGeographyToSet = nil;
+    }
     
     // Initialize SDK
     self.sdk = [ALSdk sharedWithKey: sdkKey settings: settings];
@@ -249,7 +263,7 @@ static FlutterMethodChannel *ALSharedChannel;
 
     [self.sdk initializeSdkWithCompletionHandler:^(ALSdkConfiguration *configuration)
      {
-        [self log: @"SDK initialized"];
+        [self log: @"SDK initialized %@", configuration];
         
         self.sdkConfiguration = configuration;
         self.sdkInitialized = YES;
