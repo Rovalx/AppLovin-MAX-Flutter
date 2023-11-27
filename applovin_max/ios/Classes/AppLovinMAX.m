@@ -268,6 +268,7 @@ static FlutterMethodChannel *ALSharedChannel;
         message[@"countryCode"] = self.sdkConfiguration.countryCode;
         message[@"consentFlowUserGeography"] = [self fromAppLovinConsentFlowUserGeography: self.sdkConfiguration.consentFlowUserGeography];
         message[@"isTestModeEnabled"] = @(self.sdkConfiguration.isTestModeEnabled);
+        message[@"appTrackingTransparencyStatus"] = @(self.sdkConfiguration.appTrackingTransparencyStatus);
     }
     else
     {
