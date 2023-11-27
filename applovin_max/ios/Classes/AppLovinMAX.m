@@ -161,7 +161,7 @@ static FlutterMethodChannel *ALSharedChannel;
     settings.termsAndPrivacyPolicyFlowSettings.enabled = self.consentFlowEnabledToSet.boolValue;
     settings.termsAndPrivacyPolicyFlowSettings.privacyPolicyURL = self.privacyPolicyURLToSet;
     settings.termsAndPrivacyPolicyFlowSettings.termsOfServiceURL = self.termsOfServiceURLToSet;
-    settings.termsAndPrivacyPolicyFlowSettings.debugUserGeography = [self toAppLovinConsentFlowUserGeography: self.debugUserGeographyToSet];
+    AppLovinSdkSettings.termsAndPrivacyPolicyFlowSettings.debugUserGeography = [self toAppLovinConsentFlowUserGeography: self.debugUserGeographyToSet];
 
     self.consentFlowEnabledToSet = nil;
     self.privacyPolicyURLToSet = nil;
