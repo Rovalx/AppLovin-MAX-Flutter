@@ -268,7 +268,24 @@ static FlutterMethodChannel *ALSharedChannel;
         message[@"countryCode"] = self.sdkConfiguration.countryCode;
         message[@"consentFlowUserGeography"] = [self fromAppLovinConsentFlowUserGeography: self.sdkConfiguration.consentFlowUserGeography];
         message[@"isTestModeEnabled"] = @(self.sdkConfiguration.isTestModeEnabled);
-        message[@"appTrackingTransparencyStatus"] = @(self.sdkConfiguration.appTrackingTransparencyStatus);
+        if (@available(iOS 14.5, *)) {
+            switch(@(self.sdkConfiguration.appTrackingTransparencyStatus)) {
+                case '0' :
+                    message[@"appTrackingTransparencyStatus"] = @"notDetermined";
+                    break;
+                case '1' :
+                    message[@"appTrackingTransparencyStatus"] = @"restricted";
+                    break;
+                case '2' :
+                    message[@"appTrackingTransparencyStatus"] = @"denied";
+                    break;
+                case '3' :
+                    message[@"appTrackingTransparencyStatus"] = @"granted";
+                    break;
+                default:
+                    break;
+            }       
+        }
     }
     else
     {
